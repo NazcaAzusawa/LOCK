@@ -163,8 +163,7 @@ function initBoard() {
 
 function selectRandomEnemy() {
   animationTime = 0;
-  const enemyData = ENEMIES[2]; // テスト用：ブルズ・アイ固定
-  // 本番用: const enemyData = ENEMIES[Math.floor(Math.random() * ENEMIES.length)];
+const enemyData = ENEMIES[Math.floor(Math.random() * ENEMIES.length)];
 
   currentEnemy = { ...enemyData };
   currentEnemyHP = currentEnemy.hp;
