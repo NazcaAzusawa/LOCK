@@ -54,46 +54,28 @@ body {
   transition: width 0.3s ease;
 }
 
-/* パターン選択UI */
-#pattern-controls {
+/* 色の説明UI */
+#color-legend {
   padding: 2vh 4vw;
   background: rgba(20, 20, 20, 0.8);
   display: flex;
   flex-direction: column;
-  gap: 1vh;
+  gap: 1.5vh;
 }
 
-.pattern-row {
+.legend-item {
   display: flex;
   align-items: center;
-  gap: 2vw;
+  gap: 3vw;
   font-size: 3.5vw;
 }
 
-.pattern-row label {
-  min-width: 12vw;
-}
-
-.pattern-row select {
-  flex: 1;
-  padding: 1vh 2vw;
-  background: #1a1a1a;
-  color: #00ff88;
+.legend-color {
+  width: 6vw;
+  height: 6vw;
   border: 1px solid #00ff88;
   border-radius: 0.5vh;
-  font-size: 3.5vw;
-  font-family: 'Courier New', monospace;
-}
-
-.pattern-row input[type="number"] {
-  width: 20vw;
-  padding: 1vh 2vw;
-  background: #1a1a1a;
-  color: #00ff88;
-  border: 1px solid #00ff88;
-  border-radius: 0.5vh;
-  font-size: 3.5vw;
-  font-family: 'Courier New', monospace;
+  flex-shrink: 0;
 }
 
 /* プレイヤーステータス */

@@ -65,11 +65,6 @@ function init() {
   canvas.addEventListener('click', handleTap);
   canvas.addEventListener('touchstart', handleTap, { passive: false });
   
-  document.getElementById('pattern-x').addEventListener('change', updatePattern);
-  document.getElementById('pattern-y').addEventListener('change', updatePattern);
-  document.getElementById('coeff-x').addEventListener('input', updatePattern);
-  document.getElementById('coeff-y').addEventListener('input', updatePattern);
-  
   document.body.addEventListener('click', handleDoubleTapForFullscreen);
   document.body.addEventListener('touchstart', handleDoubleTapForFullscreen, { passive: false });
   
@@ -170,6 +165,7 @@ const enemyData = ENEMIES[Math.floor(Math.random() * ENEMIES.length)];
   
   document.getElementById('enemy-name').textContent = currentEnemy.name;
   updateEnemyHP();
+  updateColorLegend();
   
   initBoard();
 }
@@ -187,11 +183,48 @@ function updateEnemyHP() {
   hpFill.style.width = `${Math.max(0, hpPercent)}%`;
 }
 
-function updatePattern() {
-  currentEnemy.patternX = document.getElementById('pattern-x').value;
-  currentEnemy.patternY = document.getElementById('pattern-y').value;
-  currentEnemy.coeffX = parseFloat(document.getElementById('coeff-x').value) || 1.0;
-  currentEnemy.coeffY = parseFloat(document.getElementById('coeff-y').value) || 1.3;
+function updateColorLegend() {
+  const legendEl = document.getElementById('color-legend');
+  legendEl.innerHTML = '';
+  
+  if (!currentEnemy.colorLegend) return;
+  
+  currentEnemy.colorLegend.forEach(item => {
+    const legendItem = document.createElement('div');
+    legendItem.className = 'legend-item';
+    
+    const colorBox = document.createElement('div');
+    colorBox.className = 'legend-color';
+    
+    // 色を設定
+    switch (item.color) {
+      case 'RED':
+        colorBox.style.backgroundColor = 'rgba(255, 50, 50, 0.8)';
+        break;
+      case 'BLUE':
+        colorBox.style.backgroundColor = 'rgba(0, 136, 255, 0.8)';
+        break;
+      case 'GREEN':
+        colorBox.style.backgroundColor = 'rgba(0, 255, 136, 0.8)';
+        break;
+      case 'YELLOW':
+        colorBox.style.backgroundColor = '#FFD700';
+        break;
+      case 'BLACK':
+        colorBox.style.backgroundColor = '#444444';
+        break;
+      case 'WHITE':
+        colorBox.style.backgroundColor = '#FFFFFF';
+        break;
+    }
+    
+    const description = document.createElement('span');
+    description.textContent = item.description;
+    
+    legendItem.appendChild(colorBox);
+    legendItem.appendChild(description);
+    legendEl.appendChild(legendItem);
+  });
 }
 
 // ========================================

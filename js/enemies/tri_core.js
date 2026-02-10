@@ -13,6 +13,13 @@ export const triCore = {
   coeffX: 1.5,
   coeffY: 1.5,
 
+  // 色の説明
+  colorLegend: [
+    { color: 'RED', description: 'コア破壊（1ダメージ）。1ターンに1度のみ。' },
+    { color: 'BLUE', description: 'コア破壊（1ダメージ）。1ターンに1度のみ。' },
+    { color: 'GREEN', description: 'コア破壊（1ダメージ）。1ターンに1度のみ。' }
+  ],
+
   // この敵では全色がコア破壊（1ダメージ）
   rules: {
     [TILE.GREEN]: {

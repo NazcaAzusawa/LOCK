@@ -12,6 +12,12 @@ export const protoOne = {
   coeffX: 1.0,
   coeffY: 0.1,
   
+  // 色の説明
+  colorLegend: [
+    { color: 'RED', description: '1ダメージ' },
+    { color: 'BLUE', description: '1ターンに1度のみ敵からの攻撃を無効化する。効果は重複しない。' }
+  ],
+  
   // この敵における各色の効果定義
   rules: {
     [TILE.RED]: {

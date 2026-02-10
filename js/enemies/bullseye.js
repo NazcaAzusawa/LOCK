@@ -12,6 +12,14 @@ export const bullseye = {
   coeffX: 0.8,
   coeffY: 0.8,
 
+  // 色の説明
+  colorLegend: [
+    { color: 'YELLOW', description: '4ダメージ（的の中心）' },
+    { color: 'RED', description: '3ダメージ' },
+    { color: 'BLUE', description: '2ダメージ' },
+    { color: 'BLACK', description: '1ダメージ' }
+  ],
+
   // この敵における各色の効果（的当て）
   rules: {
     [TILE.YELLOW]: {
