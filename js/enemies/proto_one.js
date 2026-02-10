@@ -14,7 +14,7 @@ export const protoOne = {
   
   // この敵における各色の効果定義
   rules: {
-    [TILE.GREEN]: {
+    [TILE.RED]: {
       limit: 99,
       onHit: (context) => {
         // 緑 = ダメージ1（旧ATTACK相当）
@@ -32,9 +32,72 @@ export const protoOne = {
     }
   },
   
-  // ドット絵レイアウト
   layouts: [
-    { x: 0, y: 0, w: 20, h: 60, type: TILE.BLUE },
-    { x: 20, y: 0, w: 40, h: 60, type: TILE.GREEN }
+    {
+      x: 6,
+      y: 6,
+      
+      // パレット定義（文字と色IDのマッピング）
+      palette: {
+        '.': TILE.EMPTY,
+        'B': TILE.BLUE,   // 青 (2ダメ)
+        'R': TILE.RED,    // 赤 (3ダメ)
+      },
+
+      // 設計図（ドット絵で円を描く）
+      blueprint: [
+
+          '.......................................BBBBB......',
+          '.....................................BBBBBBBBB....',
+          '....................................BBBBBBBBBBB...',
+          '...................................BBBBBBBBBBBBB..',
+          '..................................BBBBBBBBBBBBBBB.',
+          '..................................BBBBBBBBBBBBBBB.',
+          '.................................BBBBBBBBBBBBBBBBB',
+          '.................................BBBBBBBBBBBBBBBBB',
+          '.................................BBBBBBBBBBBBBBBBB',
+          '.................................BBBBBBBBBBBBBBBBB',
+          '.....................RRRRRRRR....BBBBBBBBBBBBBBBBB',
+          '..................RRRRRRRRRRRRRR..BBBBBBBBBBBBBBB.',
+          '................RRRRRRRRRRRRRRRRRRBBBBBBBBBBBBBBB.',
+          '...............RRRRRRRRRRRRRRRRRRRRBBBBBBBBBBBBB..',
+          '..............RRRRRRRRRRRRRRRRRRRRRRBBBBBBBBBBB...',
+          '.............RRRRRRRRRRRRRRRRRRRRRRRRBBBBBBBBB....',
+          '............RRRRRRRRRRRRRRRRRRRRRRRRRR.BBBBB......',
+          '............RRRRRRRRRRRRRRRRRRRRRRRRRR............',
+          '...........RRRRRRRRRRRRRRRRRRRRRRRRRRRR...........',
+          '...........RRRRRRRRRRRRRRRRRRRRRRRRRRRR...........',
+          '...........RRRRRRRRRRRRRRRRRRRRRRRRRRRR...........',
+          '..........RRRRRRRRRRRRRRRRRRRRRRRRRRRRRR..........',
+          '..........RRRRRRRRRRRRRRRRRRRRRRRRRRRRRR..........',
+          '..........RRRRRRRRRRRRRRRRRRRRRRRRRRRRRR..........',
+          '..........RRRRRRRRRRRRRRRRRRRRRRRRRRRRRR..........',
+          '..........RRRRRRRRRRRRRRRRRRRRRRRRRRRRRR..........',
+          '..........RRRRRRRRRRRRRRRRRRRRRRRRRRRRRR..........',
+          '..........RRRRRRRRRRRRRRRRRRRRRRRRRRRRRR..........',
+          '..........RRRRRRRRRRRRRRRRRRRRRRRRRRRRRR..........',
+          '...........RRRRRRRRRRRRRRRRRRRRRRRRRRRR...........',
+          '...........RRRRRRRRRRRRRRRRRRRRRRRRRRRR...........',
+          '...........RRRRRRRRRRRRRRRRRRRRRRRRRRRR...........',
+          '............RRRRRRRRRRRRRRRRRRRRRRRRRR............',
+          '......BBBBB.RRRRRRRRRRRRRRRRRRRRRRRRRR............',
+          '....BBBBBBBBBRRRRRRRRRRRRRRRRRRRRRRRR.............',
+          '...BBBBBBBBBBBRRRRRRRRRRRRRRRRRRRRRR..............',
+          '..BBBBBBBBBBBBBRRRRRRRRRRRRRRRRRRRR...............',
+          '.BBBBBBBBBBBBBBBRRRRRRRRRRRRRRRRRR................',
+          '.BBBBBBBBBBBBBBB..RRRRRRRRRRRRRR..................',
+          'BBBBBBBBBBBBBBBBB....RRRRRRRR.....................',
+          'BBBBBBBBBBBBBBBBB.................................',
+          'BBBBBBBBBBBBBBBBB.................................',
+          'BBBBBBBBBBBBBBBBB.................................',
+          'BBBBBBBBBBBBBBBBB.................................',
+          '.BBBBBBBBBBBBBBB..................................',
+          '.BBBBBBBBBBBBBBB..................................',
+          '..BBBBBBBBBBBBB...................................',
+          '...BBBBBBBBBBB....................................',
+          '....BBBBBBBBB.....................................',
+          '......BBBBBB......................................'
+      ]
+    }
   ]
 };
