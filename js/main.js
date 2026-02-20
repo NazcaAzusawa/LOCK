@@ -54,10 +54,6 @@ let hitColorsThisTurn = new Set();
 // 多段盤面：現在のフェーズ番号（ダメージを受けるたびに進む）
 let currentPhase = 0;
 
-// ダブルタップ検出用
-let lastTapTime = 0;
-const DOUBLE_TAP_DELAY = 300;
-
 // 敵状態
 let currentEnemy = null;
 let currentEnemyHP = 0;
@@ -68,6 +64,7 @@ let animationTime = 0;
 let animationFrameId = null;
 let isAttacking = false;
 let isEnemyTurn = false;
+let cursorHidden = false; // 3タップ後〜次ターン開始まで非表示
 
 // キャンバス
 let canvas = null;
@@ -78,6 +75,9 @@ let board = [];
 
 // ヒット痕
 let hits = [];
+
+// ミス痕（空マスタップ時のピクセル座標）
+let missMarks = [];
 
 // ========================================
 // 初期化
@@ -95,12 +95,11 @@ function init() {
   canvas.addEventListener("click", handleTap);
   canvas.addEventListener("touchstart", handleTap, { passive: false });
 
-  document.body.addEventListener("click", handleDoubleTapForFullscreen);
-  document.body.addEventListener("touchstart", handleDoubleTapForFullscreen, {
-    passive: false,
-  });
-
   animate();
+
+  // DOMContentLoaded 時点ではフレックスレイアウトが未確定のため
+  // 最初のフレーム後に HP バーを再描画して確実に表示する
+  requestAnimationFrame(updateEnemyHP);
 }
 
 // ========================================
@@ -339,31 +338,6 @@ function handleTap(e) {
   }
 }
 
-function handleDoubleTapForFullscreen(e) {
-  if (e.target === canvas || canvas.contains(e.target)) {
-    return;
-  }
-
-  if (e.target.tagName === "SELECT" || e.target.tagName === "INPUT") {
-    return;
-  }
-
-  const currentTime = new Date().getTime();
-  const tapLength = currentTime - lastTapTime;
-
-  if (tapLength < DOUBLE_TAP_DELAY && tapLength > 0) {
-    e.preventDefault();
-
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen().catch((err) => {
-        console.log("全画面表示エラー:", err);
-      });
-    }
-  }
-
-  lastTapTime = currentTime;
-}
-
 // ========================================
 // アクション実行（汎用化）
 // ========================================
@@ -376,7 +350,7 @@ function performAction() {
 
   // 範囲外チェック
   if (gridX < 0 || gridX >= GRID_WIDTH || gridY < 0 || gridY >= GRID_HEIGHT) {
-    showMessage("MISS");
+    missMarks.push({ px: cursorX * canvas.width, py: cursorY * canvas.height });
     isAttacking = false;
     return;
   }
@@ -385,7 +359,7 @@ function performAction() {
 
   // 空マスチェック
   if (tileType === TILE.EMPTY) {
-    showMessage("MISS");
+    missMarks.push({ px: cursorX * canvas.width, py: cursorY * canvas.height });
     isAttacking = false;
     return;
   }
@@ -456,8 +430,6 @@ function performAction() {
     if (nextPhase !== currentPhase) {
       currentPhase = nextPhase;
       initBoard();
-      hits = [];
-      tileUsageCounts = {};
       showMessage("PHASE SHIFT!", true);
       setTimeout(() => { if (!isEnemyTurn) showMessage("TAP TO ATTACK", true); }, 800);
     }
@@ -480,6 +452,7 @@ function showMessage(text, permanent = false) {
 
 function startEnemyTurn() {
   isEnemyTurn = true;
+  cursorHidden = true;
 
   if (animationFrameId) {
     cancelAnimationFrame(animationFrameId);
@@ -563,6 +536,7 @@ function resetPlayerTurn() {
   tapCount = 0;
 
   hits = [];
+  missMarks = [];
   tileUsageCounts = {};
   turnSpeedMultiplier = 1.0;
   pendingEnemyAttack = currentEnemy?.attackDamage || 1;
@@ -573,6 +547,7 @@ function resetPlayerTurn() {
   hitColorsThisTurn = new Set();
 
   isEnemyTurn = false;
+  cursorHidden = false;
   showMessage("TAP TO ATTACK", true);
   animate();
 }
@@ -605,9 +580,10 @@ function showVictory() {
     shieldThreshold = 0;
     reflectFlag = false;
     hitColorsThisTurn = new Set();
+    missMarks = [];
     isEnemyTurn = false;
+    cursorHidden = false;
     isAttacking = false;
-    showMessage("画面をタップして攻撃", true);
     animate();
   }, 2000);
 }
@@ -722,12 +698,23 @@ function draw() {
 
   drawGrid();
   drawPieces();
+  drawMissMarks();
 
   if (currentEnemy?.hideCursorUpperHalf) {
     drawUpperHalfFog();
   }
 
   drawCursor();
+}
+
+function drawMissMarks() {
+  const r = (canvas.width / GRID_WIDTH) * 0.5;
+  for (const mark of missMarks) {
+    ctx.fillStyle = "rgba(255, 255, 255, 0.75)";
+    ctx.beginPath();
+    ctx.arc(mark.px, mark.py, r, 0, Math.PI * 2);
+    ctx.fill();
+  }
 }
 
 // 上半分フォグ：タイルは見えるがカーソルが消える霧エフェクト
@@ -839,6 +826,9 @@ function drawPieces() {
 }
 
 function drawCursor() {
+  // 3タップ後〜次ターン開始まで非表示
+  if (cursorHidden) return;
+
   // 上半分不可視の敵：カーソルが上半分にいるとき描画しない
   if (currentEnemy?.hideCursorUpperHalf && cursorY < 0.5) return;
 

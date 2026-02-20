@@ -23,7 +23,7 @@ export const phaseGhost = {
   // 色の説明
   colorLegend: [
     { color: 'RED',  description: '1ダメージ（盤面が変化する）' },
-    { color: 'GRAY', description: 'このターンの残り弾数を0にリセットする' }
+    { color: 'GRAY', description: '弾数を強制的に3にしてすぐ敵の攻撃を受ける' }
   ],
 
   // 各色の効果
@@ -38,8 +38,8 @@ export const phaseGhost = {
     [TILE.GRAY]: {
       limit: 99,
       onHit: (context) => {
-        context.setTapCount(0);
-        context.showMessage('JAMMED! 0 shots');
+        context.setTapCount(3);
+        context.showMessage('JAMMED!');
       }
     }
   },
