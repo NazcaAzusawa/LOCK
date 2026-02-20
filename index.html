@@ -8,31 +8,35 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- 敵ステータス表示 -->
-    <div id="enemy-status">
-      <div id="enemy-name">スタティック・ワーム</div>
-      <div id="enemy-hp">HP: <span id="enemy-hp-text">500/500</span></div>
-      <div id="enemy-hp-bar">
-        <div id="enemy-hp-fill"></div>
+
+    <!-- 上部情報パネル（高さ = 100svh - 100vw） -->
+    <div id="info-panel">
+
+      <!-- 左：敵名・HP・ライフ・タップ・メッセージ -->
+      <div id="info-left">
+        <div id="enemy-status">
+          <div id="enemy-name">スタティック・ワーム</div>
+          <div id="enemy-hp">HP: <span id="enemy-hp-text">500/500</span></div>
+          <div id="enemy-hp-bar">
+            <div id="enemy-hp-fill"></div>
+          </div>
+        </div>
+        <div id="player-status">
+          <div>ライフ: <span id="player-life">10</span></div>
+          <div>タップ: <span id="tap-num">0</span> / 3</div>
+        </div>
+        <div id="message">画面をタップして攻撃</div>
       </div>
+
+      <!-- 右：特殊効果・色凡例 -->
+      <div id="info-right">
+        <div id="special-abilities"></div>
+        <div id="color-legend"></div>
+      </div>
+
     </div>
 
-    <!-- 色の説明UI -->
-    <div id="color-legend"></div>
-
-    <!-- 敵の特殊効果（あれば表示） -->
-    <div id="special-abilities"></div>
-
-    <!-- プレイヤーステータス -->
-    <div id="player-status">
-      <div>ライフ: <span id="player-life">3</span></div>
-      <div>タップ: <span id="tap-num">0</span> / 3</div>
-    </div>
-
-    <!-- メッセージ表示 -->
-    <div id="message">画面をタップして攻撃</div>
-
-    <!-- キャンバス（下詰め、正方形） -->
+    <!-- キャンバス（100vw正方形） -->
     <div id="canvas-container">
       <canvas id="mainBoard"></canvas>
     </div>

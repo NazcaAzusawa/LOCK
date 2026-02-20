@@ -20,30 +20,53 @@ body {
   user-select: none;
 }
 
-/* 敵ステータス */
-#enemy-status {
-  padding: 2vh 4vw;
-  background: rgba(20, 20, 20, 0.9);
+/* ─────────────────────────────
+   上部情報パネル
+   高さ = 100svh - 100vw（残り空間）
+───────────────────────────── */
+#info-panel {
+  width: 100vw;
+  height: max(0px, calc(100svh - 100vw));
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  background: rgba(10, 10, 10, 0.97);
   border-bottom: 1px solid #00ff88;
 }
 
+/* ── 左カラム ── */
+#info-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 2vw 3vw;
+  gap: 1.2vw;
+  overflow: hidden;
+  border-right: 1px solid #1a1a1a;
+  justify-content: center;
+}
+
 #enemy-name {
-  font-size: 4vw;
+  font-size: 3.8vw;
   font-weight: bold;
-  margin-bottom: 1vh;
+  color: #00ff88;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 #enemy-hp {
   font-size: 3vw;
-  margin-bottom: 1vh;
+  color: #aaffcc;
 }
 
 #enemy-hp-bar {
   width: 100%;
-  height: 1.5vh;
-  background: #222;
+  height: max(6px, 1.2vh);
+  background: #1a1a1a;
   border: 1px solid #00ff88;
-  border-radius: 0.5vh;
+  border-radius: 4px;
   overflow: hidden;
 }
 
@@ -54,67 +77,10 @@ body {
   transition: width 0.3s ease;
 }
 
-/* 色の説明UI */
-#color-legend {
-  padding: 2vh 4vw;
-  background: rgba(20, 20, 20, 0.8);
-  display: flex;
-  flex-direction: column;
-  gap: 1.5vh;
-}
-
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 3vw;
-  font-size: 3.5vw;
-}
-
-.legend-color {
-  width: 6vw;
-  height: 6vw;
-  border: 1px solid #00ff88;
-  border-radius: 0.5vh;
-  flex-shrink: 0;
-}
-
-/* 敵の特殊効果表示 */
-#special-abilities {
-  display: none;
-  padding: 1.5vh 4vw;
-  background: rgba(30, 20, 10, 0.85);
-  border-top: 1px solid #ff8800;
-  gap: 1vh;
-  flex-direction: column;
-}
-
-#special-abilities.visible {
-  display: flex;
-}
-
-#special-abilities-label {
-  font-size: 2.8vw;
-  color: #ff8800;
-  font-weight: bold;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.3vh;
-}
-
-.special-item {
-  font-size: 3.2vw;
-  color: #ffcc77;
-  padding-left: 0.5vw;
-  line-height: 1.5;
-}
-
-/* プレイヤーステータス */
 #player-status {
-  padding: 1.5vh 4vw;
-  background: rgba(20, 20, 20, 0.7);
-  font-size: 4vw;
+  font-size: 3.4vw;
   display: flex;
-  justify-content: space-around;
-  border-bottom: 1px solid #00ff88;
+  gap: 5vw;
 }
 
 #player-life {
@@ -127,31 +93,92 @@ body {
   color: #ffff00;
 }
 
-/* メッセージ表示 */
 #message {
-  padding: 2vh 4vw;
-  background: rgba(20, 20, 20, 0.6);
-  font-size: 3.5vw;
-  text-align: center;
+  font-size: 3vw;
   color: #ffaa00;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* キャンバスコンテナ（下詰め、正方形） */
-#canvas-container {
+/* ── 右カラム ── */
+#info-right {
   flex: 1;
   display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding: 2vw;
-  overflow: hidden;
+  flex-direction: column;
+  padding: 2vw 3vw;
+  gap: 1vw;
+  overflow-y: auto;
+}
+
+/* 特殊効果 */
+#special-abilities {
+  display: none;
+  flex-direction: column;
+  gap: 0.6vw;
+}
+
+#special-abilities.visible {
+  display: flex;
+}
+
+#special-abilities-label {
+  font-size: 2.6vw;
+  color: #ff8800;
+  font-weight: bold;
+  margin-bottom: 0.3vw;
+}
+
+.special-item {
+  font-size: 2.8vw;
+  color: #ffcc77;
+  line-height: 1.4;
+  padding-left: 0.5vw;
+}
+
+/* 色凡例 */
+#color-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 1vw;
+}
+
+#color-legend-label {
+  font-size: 2.6vw;
+  color: #00ff88;
+  font-weight: bold;
+  margin-bottom: 0.3vw;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 2vw;
+  font-size: 2.8vw;
+  line-height: 1.3;
+}
+
+.legend-color {
+  width: 4.5vw;
+  height: 4.5vw;
+  border: 1px solid #00ff88;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+/* ─────────────────────────────
+   キャンバス（100vw 正方形）
+───────────────────────────── */
+#canvas-container {
+  width: 100vw;
+  height: 100vw;
+  flex-shrink: 0;
 }
 
 #mainBoard {
-  /* 正方形を保つ：幅を100vwベースにして高さも同じに */
-  width: 96vw;
-  height: 96vw;
-  max-width: 96vh;
-  max-height: 96vh;
+  width: 100%;
+  height: 100%;
+  display: block;
   border: 2px solid #00ff88;
   background: #0a0a0a;
   box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
@@ -159,7 +186,9 @@ body {
   image-rendering: crisp-edges;
 }
 
-/* 勝利メッセージ */
+/* ─────────────────────────────
+   演出
+───────────────────────────── */
 .victory-message {
   position: fixed;
   top: 50%;
@@ -187,7 +216,6 @@ body {
   }
 }
 
-/* 画面揺れアニメーション */
 .shake {
   animation: shake 0.5s ease;
 }

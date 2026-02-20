@@ -234,6 +234,11 @@ function updateColorLegend() {
 
   if (!currentEnemy.colorLegend) return;
 
+  const label = document.createElement("div");
+  label.id = "color-legend-label";
+  label.textContent = "◆ 色の効果";
+  legendEl.appendChild(label);
+
   currentEnemy.colorLegend.forEach((item) => {
     const legendItem = document.createElement("div");
     legendItem.className = "legend-item";
