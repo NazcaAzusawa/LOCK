@@ -11,7 +11,7 @@ export const triCore = {
   isRegen: true, // 全回復ギミック持ち
   patternX: 'cos',
   patternY: 'sine',
-  coeffX: 1.5,
+  coeffX: 1.7,
   coeffY: 1.5,
 
   // 敵の特殊効果

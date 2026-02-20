@@ -348,18 +348,17 @@ function performAction() {
   const gridX = Math.floor(cursorX * GRID_WIDTH);
   const gridY = Math.floor(cursorY * GRID_HEIGHT);
 
-  // 範囲外チェック
+  // 範囲外チェックはスキップ（グリッド外ではミス痕なし）
   if (gridX < 0 || gridX >= GRID_WIDTH || gridY < 0 || gridY >= GRID_HEIGHT) {
-    missMarks.push({ px: cursorX * canvas.width, py: cursorY * canvas.height });
     isAttacking = false;
     return;
   }
 
   const tileType = board[gridY][gridX];
 
-  // 空マスチェック
+  // 空マスチェック：グリッド座標で記録
   if (tileType === TILE.EMPTY) {
-    missMarks.push({ px: cursorX * canvas.width, py: cursorY * canvas.height });
+    missMarks.push({ gx: gridX, gy: gridY });
     isAttacking = false;
     return;
   }
@@ -458,6 +457,9 @@ function startEnemyTurn() {
     cancelAnimationFrame(animationFrameId);
     animationFrameId = null;
   }
+
+  // カーソルを消した状態でキャンバスを再描画
+  draw();
 
   // トライ・コア（再生持ち）の復活判定
   if (currentEnemy.isRegen && currentEnemyHP > 0) {
@@ -708,12 +710,11 @@ function draw() {
 }
 
 function drawMissMarks() {
-  const r = (canvas.width / GRID_WIDTH) * 0.5;
+  const cellWidth  = canvas.width  / GRID_WIDTH;
+  const cellHeight = canvas.height / GRID_HEIGHT;
+  ctx.fillStyle = "#FFFFFF";
   for (const mark of missMarks) {
-    ctx.fillStyle = "rgba(255, 255, 255, 0.75)";
-    ctx.beginPath();
-    ctx.arc(mark.px, mark.py, r, 0, Math.PI * 2);
-    ctx.fill();
+    ctx.fillRect(mark.gx * cellWidth, mark.gy * cellHeight, cellWidth, cellHeight);
   }
 }
 
