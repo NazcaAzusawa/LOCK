@@ -683,11 +683,11 @@ function calculatePosition(pattern, t, coeff, max) {
       value = phase > 1 ? 2 - phase : phase;
       break;
     case "zigzag":
-      value = Math.abs(Math.sin(tScaled * 2));
+      value = 1-Math.abs(Math.sin(tScaled * 2));
       break;
     case "bounce":
       const bouncePhase = (tScaled * 0.8) % (2 * Math.PI);
-      value = Math.abs(Math.sin(bouncePhase));
+      value = 1-Math.abs(Math.sin(bouncePhase));
       break;
     case "center":
       const s = Math.sin(T);

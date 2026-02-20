@@ -9,10 +9,10 @@ export const diceCore = {
   name: 'ダイス・コア',
   image: 'img/enemies/dice_core.png',
   hp: 5,
-  patternX: 'chaos',
-  patternY: 'doubleSine',
-  coeffX: 1.5,
-  coeffY: 1.8,
+  patternX: 'center',
+  patternY: 'center',
+  coeffX: 4,
+  coeffY: 1.7,
 
   // 色の説明
   colorLegend: [

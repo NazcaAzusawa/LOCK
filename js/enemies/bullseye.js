@@ -8,10 +8,10 @@ export const bullseye = {
   name: 'ブルズ・アイ',
   image: 'img/enemies/bullseye.png',
   hp: 10,
-  patternX: 'zigzag',
-  patternY: 'bounce',
-  coeffX: 0.8,
-  coeffY: 0.8,
+  patternX: 'chaos',
+  patternY: 'chaos',
+  coeffX: 1.5,
+  coeffY: 2.8,
 
   // 色の説明
   colorLegend: [

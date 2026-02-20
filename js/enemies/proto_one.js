@@ -10,8 +10,8 @@ export const protoOne = {
   hp: 10,
   patternX: 'sine',
   patternY: 'linear',
-  coeffX: 1.0,
-  coeffY: 0.1,
+  coeffX: 1.3,
+  coeffY:3.4,
   
   // 色の説明
   colorLegend: [

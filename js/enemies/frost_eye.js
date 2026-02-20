@@ -10,8 +10,8 @@ export const frostEye = {
   hp: 1,
   patternX: 'chaos',
   patternY: 'doubleSine',
-  coeffX: 2.2,
-  coeffY: 1.8,
+  coeffX: 3.8,
+  coeffY: 2.1,
 
   // 色の説明
   colorLegend: [
@@ -24,7 +24,7 @@ export const frostEye = {
     [TILE.CYAN]: {
       limit: 99,
       onHit: (context) => {
-        context.setSpeedMultiplier(0.8);
+        context.setSpeedMultiplier(0.6);
         context.showMessage('SLOWED!');
       }
     },

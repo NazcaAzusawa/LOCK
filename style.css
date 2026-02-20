@@ -35,7 +35,7 @@ body {
   flex-direction: row;
   overflow: hidden;
   background: #0d0d0d;
-  border-bottom: 1px solid #00ff88;
+  border-top: 1px solid #00ff88;
 }
 
 /* ── 左カラム（比率 3） ── */

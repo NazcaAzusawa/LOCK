@@ -9,6 +9,14 @@
   </head>
   <body>
 
+    <!-- カットインバナー -->
+    <div id="cutin"><span id="cutin-text"></span></div>
+
+    <!-- キャンバス（100vw 正方形） -->
+    <div id="canvas-container">
+      <canvas id="mainBoard"></canvas>
+    </div>
+
     <div id="info-panel">
 
       <!-- 左（3）：敵画像・敵名・HP・ライフ -->
@@ -33,14 +41,6 @@
         <div id="color-legend"></div>
       </div>
 
-    </div>
-
-    <!-- カットインバナー -->
-    <div id="cutin"><span id="cutin-text"></span></div>
-
-    <!-- キャンバス（100vw 正方形） -->
-    <div id="canvas-container">
-      <canvas id="mainBoard"></canvas>
     </div>
 
     <script type="module" src="js/main.js"></script>
