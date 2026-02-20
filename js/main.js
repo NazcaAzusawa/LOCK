@@ -460,16 +460,7 @@ function performAction() {
 // ========================================
 
 function showMessage(text, permanent = false) {
-  const msgEl = document.getElementById("message");
-  msgEl.textContent = text;
-
-  if (!permanent) {
-    setTimeout(() => {
-      if (!isEnemyTurn) {
-        msgEl.textContent = "画面をタップして攻撃";
-      }
-    }, 200);
-  }
+  // #message 要素は削除済みのため何もしない
 }
 
 // ========================================

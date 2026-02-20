@@ -9,23 +9,20 @@
   </head>
   <body>
 
-    <!-- 上部情報パネル（高さ = 100svh - 100vw） -->
+    <!-- 上部情報パネル（残り高さを自動で取る） -->
     <div id="info-panel">
 
-      <!-- 左：敵名・HP・ライフ・タップ・メッセージ -->
+      <!-- 左：敵名・HP・ライフ・タップ -->
       <div id="info-left">
-        <div id="enemy-status">
-          <div id="enemy-name">スタティック・ワーム</div>
-          <div id="enemy-hp">HP: <span id="enemy-hp-text">500/500</span></div>
-          <div id="enemy-hp-bar">
-            <div id="enemy-hp-fill"></div>
-          </div>
+        <div id="enemy-name">---</div>
+        <div id="enemy-hp">HP: <span id="enemy-hp-text">-/-</span></div>
+        <div id="enemy-hp-bar">
+          <div id="enemy-hp-fill"></div>
         </div>
         <div id="player-status">
           <div>ライフ: <span id="player-life">10</span></div>
           <div>タップ: <span id="tap-num">0</span> / 3</div>
         </div>
-        <div id="message">画面をタップして攻撃</div>
       </div>
 
       <!-- 右：特殊効果・色凡例 -->
@@ -36,7 +33,7 @@
 
     </div>
 
-    <!-- キャンバス（100vw正方形） -->
+    <!-- キャンバス（100vw 正方形・固定） -->
     <div id="canvas-container">
       <canvas id="mainBoard"></canvas>
     </div>

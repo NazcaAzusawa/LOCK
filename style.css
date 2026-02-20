@@ -5,46 +5,50 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-body {
-  width: 100vw;
+html, body {
+  width: 100%;
   height: 100svh;
   overflow: hidden;
   background: #0a0a0a;
   color: #00ff88;
   font-family: 'Courier New', monospace;
-  display: flex;
-  flex-direction: column;
   touch-action: none;
-  position: fixed;
   -webkit-user-select: none;
   user-select: none;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+}
+
 /* ─────────────────────────────
    上部情報パネル
-   高さ = 100svh - 100vw（残り空間）
+   キャンバスの残り高さを自動で取る
 ───────────────────────────── */
 #info-panel {
-  width: 100vw;
-  height: max(0px, calc(100svh - 100vw));
-  flex-shrink: 0;
+  /* キャンバス(100vw)以外の残り高さを確保 */
+  flex: 1 1 auto;
+  min-height: 0;
+
   display: flex;
   flex-direction: row;
   overflow: hidden;
-  background: rgba(10, 10, 10, 0.97);
+  background: #0d0d0d;
   border-bottom: 1px solid #00ff88;
 }
 
 /* ── 左カラム ── */
 #info-left {
-  flex: 1;
+  flex: 1 1 50%;
+  min-width: 0;           /* テキスト溢れ防止 */
   display: flex;
   flex-direction: column;
-  padding: 2vw 3vw;
-  gap: 1.2vw;
-  overflow: hidden;
-  border-right: 1px solid #1a1a1a;
   justify-content: center;
+  gap: 1.5vw;
+  padding: 2vw 3vw;
+  overflow: hidden;
+  border-right: 1px solid #1e1e1e;
 }
 
 #enemy-name {
@@ -63,7 +67,8 @@ body {
 
 #enemy-hp-bar {
   width: 100%;
-  height: max(6px, 1.2vh);
+  height: 1.4vh;
+  min-height: 5px;
   background: #1a1a1a;
   border: 1px solid #00ff88;
   border-radius: 4px;
@@ -80,7 +85,7 @@ body {
 #player-status {
   font-size: 3.4vw;
   display: flex;
-  gap: 5vw;
+  gap: 4vw;
 }
 
 #player-life {
@@ -93,21 +98,14 @@ body {
   color: #ffff00;
 }
 
-#message {
-  font-size: 3vw;
-  color: #ffaa00;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
 /* ── 右カラム ── */
 #info-right {
-  flex: 1;
+  flex: 1 1 50%;
+  min-width: 0;           /* テキスト溢れ防止 */
   display: flex;
   flex-direction: column;
   padding: 2vw 3vw;
-  gap: 1vw;
+  gap: 1.2vw;
   overflow-y: auto;
 }
 
@@ -115,7 +113,7 @@ body {
 #special-abilities {
   display: none;
   flex-direction: column;
-  gap: 0.6vw;
+  gap: 0.8vw;
 }
 
 #special-abilities.visible {
@@ -126,14 +124,13 @@ body {
   font-size: 2.6vw;
   color: #ff8800;
   font-weight: bold;
-  margin-bottom: 0.3vw;
 }
 
 .special-item {
-  font-size: 2.8vw;
+  font-size: 2.6vw;
   color: #ffcc77;
   line-height: 1.4;
-  padding-left: 0.5vw;
+  padding-left: 1vw;
 }
 
 /* 色凡例 */
@@ -147,32 +144,32 @@ body {
   font-size: 2.6vw;
   color: #00ff88;
   font-weight: bold;
-  margin-bottom: 0.3vw;
 }
 
 .legend-item {
   display: flex;
   align-items: center;
   gap: 2vw;
-  font-size: 2.8vw;
+  font-size: 2.6vw;
   line-height: 1.3;
 }
 
 .legend-color {
-  width: 4.5vw;
-  height: 4.5vw;
+  width: 4vw;
+  height: 4vw;
+  min-width: 4vw;
   border: 1px solid #00ff88;
   border-radius: 3px;
   flex-shrink: 0;
 }
 
 /* ─────────────────────────────
-   キャンバス（100vw 正方形）
+   キャンバス（100vw 正方形・固定）
 ───────────────────────────── */
 #canvas-container {
+  flex: 0 0 100vw;
   width: 100vw;
   height: 100vw;
-  flex-shrink: 0;
 }
 
 #mainBoard {
