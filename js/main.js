@@ -519,7 +519,10 @@ function startEnemyTurn() {
   }
 
   // 通常の敵ターン処理
-  showMessage("ENEMY ATTACK!", true);
+  // 3回目タップの痕跡が見えてからカットインを出す
+  setTimeout(() => {
+    showMessage("ENEMY ATTACK!", true);
+  }, 400);
 
   setTimeout(() => {
     // 緑による軽減後のダメージ
@@ -564,7 +567,7 @@ function startEnemyTurn() {
     }
 
     setTimeout(resetPlayerTurn, 1000);
-  }, 700);
+  }, 1400);
 }
 
 function resetPlayerTurn() {
