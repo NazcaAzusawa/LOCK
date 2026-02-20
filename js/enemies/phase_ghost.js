@@ -13,6 +13,12 @@ export const phaseGhost = {
   coeffX: 2.0,
   coeffY: 1.6,
 
+  // 敵の特殊効果
+  specialAbilities: [
+    'ダメージを受けるたびに盤面が変化する（全3フェーズ）',
+    '盤面変化時、ヒット痕と使用回数がリセットされる'
+  ],
+
   // 色の説明
   colorLegend: [
     { color: 'RED',  description: '1ダメージ（盤面が変化する）' },

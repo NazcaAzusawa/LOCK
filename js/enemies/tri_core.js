@@ -13,6 +13,11 @@ export const triCore = {
   coeffX: 1.5,
   coeffY: 1.5,
 
+  // 敵の特殊効果
+  specialAbilities: [
+    '全コアを破壊すると次ターン冒頭に全回復する'
+  ],
+
   // 色の説明
   colorLegend: [
     { color: 'RED', description: 'コア破壊（1ダメージ）。1ターンに1度のみ。' },

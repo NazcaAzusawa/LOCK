@@ -210,6 +210,7 @@ function selectRandomEnemy() {
   document.getElementById("enemy-name").textContent = currentEnemy.name;
   updateEnemyHP();
   updateColorLegend();
+  updateSpecialAbilities();
 
   initBoard();
 }
@@ -274,6 +275,31 @@ function updateColorLegend() {
     legendItem.appendChild(colorBox);
     legendItem.appendChild(description);
     legendEl.appendChild(legendItem);
+  });
+}
+
+function updateSpecialAbilities() {
+  const el = document.getElementById("special-abilities");
+  el.innerHTML = "";
+
+  const abilities = currentEnemy.specialAbilities;
+  if (!abilities || abilities.length === 0) {
+    el.classList.remove("visible");
+    return;
+  }
+
+  el.classList.add("visible");
+
+  const label = document.createElement("div");
+  label.id = "special-abilities-label";
+  label.textContent = "◆ 特殊効果";
+  el.appendChild(label);
+
+  abilities.forEach((text) => {
+    const item = document.createElement("div");
+    item.className = "special-item";
+    item.textContent = "▸ " + text;
+    el.appendChild(item);
   });
 }
 

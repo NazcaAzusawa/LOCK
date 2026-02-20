@@ -7,7 +7,7 @@
 
 body {
   width: 100vw;
-  height: 100vh;
+  height: 100svh;
   overflow: hidden;
   background: #0a0a0a;
   color: #00ff88;
@@ -76,6 +76,35 @@ body {
   border: 1px solid #00ff88;
   border-radius: 0.5vh;
   flex-shrink: 0;
+}
+
+/* 敵の特殊効果表示 */
+#special-abilities {
+  display: none;
+  padding: 1.5vh 4vw;
+  background: rgba(30, 20, 10, 0.85);
+  border-top: 1px solid #ff8800;
+  gap: 1vh;
+  flex-direction: column;
+}
+
+#special-abilities.visible {
+  display: flex;
+}
+
+#special-abilities-label {
+  font-size: 2.8vw;
+  color: #ff8800;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.3vh;
+}
+
+.special-item {
+  font-size: 3.2vw;
+  color: #ffcc77;
+  padding-left: 0.5vw;
+  line-height: 1.5;
 }
 
 /* プレイヤーステータス */

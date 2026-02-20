@@ -15,6 +15,11 @@ export const blindGhost = {
   coeffX: 1.6,
   coeffY: 0.9,
 
+  // 敵の特殊効果
+  specialAbilities: [
+    '上半分はカーソルが見えない'
+  ],
+
   // 色の説明
   colorLegend: [
     { color: 'RED',    description: '5ダメージ（上半分・カーソル不可視）' },

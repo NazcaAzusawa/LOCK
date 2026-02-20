@@ -16,6 +16,13 @@ export const zoneSplitter = {
   coeffX: 1.2,
   coeffY: 1.0,
 
+  // 敵の特殊効果
+  specialAbilities: [
+    '最初はカーソルが左半分のみ動く',
+    'ゾーンはターンを跨いでも維持される',
+    '理想ルート：赤 → 緑（ゾーン切替）→ 青 で1ターン撃破'
+  ],
+
   // 色の説明
   colorLegend: [
     { color: 'RED',   description: '1ダメージ（同ターン青と同時なら5ダメージ）' },

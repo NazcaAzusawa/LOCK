@@ -15,6 +15,12 @@ export const mirrorCore = {
   coeffX: 1.1,
   coeffY: 0.9,
 
+  // 敵の特殊効果
+  specialAbilities: [
+    '基本攻撃力 2（通常の2倍）',
+    '水色の反射のみでしかダメージを与えられない'
+  ],
+
   // 色の説明
   colorLegend: [
     { color: 'GREEN', description: '敵の攻撃-1（重複可、ターンごとリセット）' },
