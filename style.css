@@ -108,15 +108,16 @@ body {
 /* ハートライフ表示 */
 #player-hearts {
   display: flex;
-  gap: 1vw;
-  flex-wrap: wrap;
+  gap: 0.5vw;
+  flex-wrap: nowrap;
 }
 
 .heart {
-  width: 5vw;
-  height: 5vw;
+  flex: 1 1 0;
+  min-width: 0;
+  aspect-ratio: 1 / 1;
+  height: auto;
   object-fit: contain;
-  flex-shrink: 0;
 }
 
 /* ── 右カラム（比率 7） ── */
@@ -202,6 +203,42 @@ body {
   box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
   image-rendering: pixelated;
   image-rendering: crisp-edges;
+}
+
+/* ─────────────────────────────
+   カットインバナー
+───────────────────────────── */
+#cutin {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  z-index: 800;
+  pointer-events: none;
+  padding: 2.5vw 6vw;
+  background: rgba(5, 5, 5, 0.88);
+  border-top: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  color: #00ff88;
+  text-align: center;
+  font-family: 'Courier New', monospace;
+  font-size: 7vw;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 12px currentColor;
+  opacity: 0;
+  transform: translateY(-50%) scaleX(0);
+}
+
+#cutin.active {
+  animation: cutin-anim 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes cutin-anim {
+  0%   { transform: translateY(-50%) scaleX(0); opacity: 0; }
+  18%  { transform: translateY(-50%) scaleX(1); opacity: 1; }
+  72%  { transform: translateY(-50%) scaleX(1); opacity: 1; }
+  100% { transform: translateY(-50%) scaleX(1); opacity: 0; }
 }
 
 /* ─────────────────────────────

@@ -333,7 +333,7 @@ function handleTap(e) {
 
   performAction();
 
-  if (tapCount >= 3) {
+  if (tapCount >= 3 && !isEnemyTurn) {
     startEnemyTurn();
   }
 }
@@ -441,8 +441,41 @@ function performAction() {
 // メッセージ表示
 // ========================================
 
-function showMessage(text, permanent = false) {
-  // #message 要素は削除済みのため何もしない
+let _cutinTimer = null;
+
+function showMessage(text, _permanent = false) {
+  const el = document.getElementById("cutin");
+  const span = document.getElementById("cutin-text");
+  if (!el || !span) return;
+
+  // 毎ターン呼ばれる定型メッセージはカットイン不要
+  const t = text.toUpperCase();
+  if (t === "TAP TO ATTACK") return;
+
+  // メッセージ内容に応じてカラーを決定
+  let color = "#00ff88"; // default: 緑（HIT系）
+  if (t.includes("DAMAGE") || t.includes("JAMMED"))       color = "#ff4444";
+  else if (t.includes("ENEMY ATTACK"))                     color = "#ff6600";
+  else if (t.includes("BLOCKED") || t.includes("REFLECT")) color = "#44aaff";
+  else if (t.includes("PHASE SHIFT"))                      color = "#cc88ff";
+  else if (t.includes("VICTORY") || t.includes("RESTORED"))color = "#ffdd00";
+  else if (t.includes("TAP TO ATTACK") || t.includes("REGENERATING")) color = "#aaaaaa";
+  else if (t.includes("SLOWED") || t.includes("AMPLIFIED") || t.includes("BOOSTED")) color = "#ffaa00";
+
+  span.textContent = text;
+  el.style.color = color;
+
+  // アニメーション再起動（クラスを一旦外してリフロー）
+  el.classList.remove("active");
+  if (_cutinTimer) { clearTimeout(_cutinTimer); _cutinTimer = null; }
+  void el.offsetWidth;
+  el.classList.add("active");
+
+  // アニメーション終了後にクラスを除去
+  _cutinTimer = setTimeout(() => {
+    el.classList.remove("active");
+    _cutinTimer = null;
+  }, 900);
 }
 
 // ========================================
