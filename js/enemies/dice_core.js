@@ -7,6 +7,7 @@ import { TILE } from '../constants.js';
 
 export const diceCore = {
   name: 'ダイス・コア',
+  image: 'img/enemies/dice_core.png',
   hp: 5,
   patternX: 'chaos',
   patternY: 'doubleSine',

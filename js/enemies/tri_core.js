@@ -6,6 +6,7 @@ import { TILE } from '../constants.js';
 
 export const triCore = {
   name: 'トライ・コア',
+  image: 'img/enemies/tri_core.png',
   hp: 3,
   isRegen: true, // 全回復ギミック持ち
   patternX: 'cos',

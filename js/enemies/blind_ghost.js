@@ -8,6 +8,7 @@ import { TILE } from '../constants.js';
 
 export const blindGhost = {
   name: 'ブラインド・ゴースト',
+  image: 'img/enemies/blind_ghost.png',
   hp: 12,
   hideCursorUpperHalf: true,
   patternX: 'chaos',

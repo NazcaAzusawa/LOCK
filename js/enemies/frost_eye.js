@@ -6,6 +6,7 @@ import { TILE } from '../constants.js';
 
 export const frostEye = {
   name: 'フロスト・アイ',
+  image: 'img/enemies/frost_eye.png',
   hp: 1,
   patternX: 'chaos',
   patternY: 'doubleSine',

@@ -6,6 +6,7 @@ import { TILE } from '../constants.js';
 
 export const bullseye = {
   name: 'ブルズ・アイ',
+  image: 'img/enemies/bullseye.png',
   hp: 10,
   patternX: 'zigzag',
   patternY: 'bounce',

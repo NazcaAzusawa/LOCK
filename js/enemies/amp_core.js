@@ -8,6 +8,7 @@ import { TILE } from '../constants.js';
 
 export const ampCore = {
   name: 'アンプ・コア',
+  image: 'img/enemies/amp_core.png',
   hp: 1,
   patternX: 'center',
   patternY: 'center',

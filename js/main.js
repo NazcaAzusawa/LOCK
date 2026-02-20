@@ -226,17 +226,19 @@ function selectRandomEnemy() {
 function updatePlayerHearts() {
   const hearts = document.querySelectorAll(".heart");
   hearts.forEach((heart, i) => {
-    heart.src = i < playerLife ? "img/heart_fill.png" : "img/heart_empty.png";
+    heart.src = i < playerLife ? "img/fill.png" : "img/empty.png";
   });
 }
 
 function updateEnemyHP() {
-  const hpText = document.getElementById("enemy-hp-text");
-  const hpFill = document.getElementById("enemy-hp-fill");
+  const bar = document.getElementById("enemy-hp-bar");
+  bar.innerHTML = "";
 
-  hpText.textContent = `${Math.max(0, currentEnemyHP)}/${currentEnemy.hp}`;
-  const hpPercent = (currentEnemyHP / currentEnemy.hp) * 100;
-  hpFill.style.width = `${Math.max(0, hpPercent)}%`;
+  for (let i = 0; i < currentEnemy.hp; i++) {
+    const seg = document.createElement("div");
+    seg.className = "hp-segment " + (i < currentEnemyHP ? "hp-filled" : "hp-empty");
+    bar.appendChild(seg);
+  }
 }
 
 function updateColorLegend() {

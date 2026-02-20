@@ -6,6 +6,7 @@ import { TILE } from '../constants.js';
 
 export const protoOne = {
   name: 'プロト・ワン',
+  image: 'img/enemies/proto_one.png',
   hp: 10,
   patternX: 'sine',
   patternY: 'linear',

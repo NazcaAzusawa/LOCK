@@ -9,6 +9,7 @@ import { TILE } from '../constants.js';
 
 export const zoneSplitter = {
   name: 'ゾーン・スプリッター',
+  image: 'img/enemies/zone_splitter.png',
   hp: 5,
   initialZone: 'left',
   patternX: 'sawtooth',

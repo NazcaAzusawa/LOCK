@@ -8,6 +8,7 @@ import { TILE } from '../constants.js';
 
 export const mirrorCore = {
   name: 'ミラー・コア',
+  image: 'img/enemies/mirror_core.png',
   hp: 1,
   attackDamage: 2,
   patternX: 'sawtooth',

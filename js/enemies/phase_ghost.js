@@ -7,6 +7,7 @@ import { TILE } from '../constants.js';
 
 export const phaseGhost = {
   name: 'フェイズ・ゴースト',
+  image: 'img/enemies/phase_ghost.png',
   hp: 3,
   patternX: 'pendulum',
   patternY: 'chaos',
