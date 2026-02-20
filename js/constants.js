@@ -9,7 +9,9 @@ export const TILE = {
   RED: 3,     // 旧BURST
   YELLOW: 4,
   BLACK: 5,
-  WHITE: 6
+  WHITE: 6,
+  CYAN: 7,
+  GRAY: 8
 };
 
 export const GRID_WIDTH = 60;
