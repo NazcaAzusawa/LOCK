@@ -38,17 +38,38 @@ body {
   border-bottom: 1px solid #00ff88;
 }
 
-/* ── 左カラム ── */
+/* ── 左カラム（比率 3） ── */
 #info-left {
-  flex: 1 1 50%;
-  min-width: 0;           /* テキスト溢れ防止 */
+  flex: 3 1 0;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 1.5vw;
-  padding: 2vw 3vw;
+  gap: 1.2vw;
+  padding: 2vw 2.5vw;
   overflow: hidden;
   border-right: 1px solid #1e1e1e;
+}
+
+/* 敵画像コンテナ（正方形） */
+#enemy-img-container {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+#enemy-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 #enemy-name {
@@ -82,26 +103,24 @@ body {
   transition: width 0.3s ease;
 }
 
-#player-status {
-  font-size: 3.4vw;
+/* ハートライフ表示 */
+#player-hearts {
   display: flex;
-  gap: 4vw;
+  gap: 1vw;
+  flex-wrap: wrap;
 }
 
-#player-life {
-  font-weight: bold;
-  color: #ff3333;
+.heart {
+  width: 5vw;
+  height: 5vw;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
-#tap-num {
-  font-weight: bold;
-  color: #ffff00;
-}
-
-/* ── 右カラム ── */
+/* ── 右カラム（比率 7） ── */
 #info-right {
-  flex: 1 1 50%;
-  min-width: 0;           /* テキスト溢れ防止 */
+  flex: 7 1 0;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   padding: 2vw 3vw;
@@ -121,13 +140,13 @@ body {
 }
 
 #special-abilities-label {
-  font-size: 2.6vw;
+  font-size: 3.2vw;
   color: #ff8800;
   font-weight: bold;
 }
 
 .special-item {
-  font-size: 2.6vw;
+  font-size: 3vw;
   color: #ffcc77;
   line-height: 1.4;
   padding-left: 1vw;
@@ -141,7 +160,7 @@ body {
 }
 
 #color-legend-label {
-  font-size: 2.6vw;
+  font-size: 3.2vw;
   color: #00ff88;
   font-weight: bold;
 }
@@ -150,7 +169,7 @@ body {
   display: flex;
   align-items: center;
   gap: 2vw;
-  font-size: 2.6vw;
+  font-size: 3vw;
   line-height: 1.3;
 }
 

@@ -25,7 +25,7 @@ const ENEMIES = [protoOne, triCore, bullseye, frostEye, phaseGhost, ampCore, dic
 // ========================================
 
 // プレイヤー状態
-let playerLife = 10;
+let playerLife = 5;
 let playerShield = 0;
 
 // タイル使用回数管理
@@ -208,6 +208,10 @@ function selectRandomEnemy() {
   cursorZone = currentEnemy.initialZone || null;
 
   document.getElementById("enemy-name").textContent = currentEnemy.name;
+
+  const enemyImg = document.getElementById("enemy-img");
+  if (enemyImg) enemyImg.src = currentEnemy.image || "";
+
   updateEnemyHP();
   updateColorLegend();
   updateSpecialAbilities();
@@ -218,6 +222,13 @@ function selectRandomEnemy() {
 // ========================================
 // UI更新
 // ========================================
+
+function updatePlayerHearts() {
+  const hearts = document.querySelectorAll(".heart");
+  hearts.forEach((heart, i) => {
+    heart.src = i < playerLife ? "img/heart_fill.png" : "img/heart_empty.png";
+  });
+}
 
 function updateEnemyHP() {
   const hpText = document.getElementById("enemy-hp-text");
@@ -318,7 +329,6 @@ function handleTap(e) {
   if (isAttacking || isEnemyTurn) return;
 
   tapCount++;
-  document.getElementById("tap-num").textContent = tapCount;
 
   performAction();
 
@@ -408,7 +418,6 @@ function performAction() {
     setSpeedMultiplier: (v) => { turnSpeedMultiplier = v; },
     setTapCount: (v) => {
       tapCount = v;
-      document.getElementById("tap-num").textContent = v;
     },
     setEnemyAttack: (v) => { pendingEnemyAttack = v; },
     getEnemyAttack: () => pendingEnemyAttack,
@@ -489,7 +498,7 @@ function startEnemyTurn() {
 
       setTimeout(() => {
         playerLife--;
-        document.getElementById("player-life").textContent = playerLife;
+        updatePlayerHearts();
         document.body.classList.add("shake");
         setTimeout(() => document.body.classList.remove("shake"), 500);
 
@@ -529,7 +538,7 @@ function startEnemyTurn() {
       showMessage(reflectFlag ? "REFLECT! No damage." : "REDUCED to 0!", true);
     } else {
       playerLife -= reducedDamage;
-      document.getElementById("player-life").textContent = playerLife;
+      updatePlayerHearts();
       document.body.classList.add("shake");
       setTimeout(() => document.body.classList.remove("shake"), 500);
       showMessage(`DAMAGE! -${reducedDamage}  Life: ${playerLife}`, true);
@@ -550,7 +559,6 @@ function startEnemyTurn() {
 
 function resetPlayerTurn() {
   tapCount = 0;
-  document.getElementById("tap-num").textContent = tapCount;
 
   hits = [];
   tileUsageCounts = {};
@@ -586,7 +594,6 @@ function showVictory() {
     victoryEl.remove();
     selectRandomEnemy();
     tapCount = 0;
-    document.getElementById("tap-num").textContent = tapCount;
     hits = [];
     tileUsageCounts = {};
     turnSpeedMultiplier = 1.0;

@@ -9,23 +9,28 @@
   </head>
   <body>
 
-    <!-- 上部情報パネル（残り高さを自動で取る） -->
     <div id="info-panel">
 
-      <!-- 左：敵名・HP・ライフ・タップ -->
+      <!-- 左（3）：敵画像・敵名・HP・ライフ -->
       <div id="info-left">
+        <div id="enemy-img-container">
+          <img id="enemy-img" src="" alt="" />
+        </div>
         <div id="enemy-name">---</div>
         <div id="enemy-hp">HP: <span id="enemy-hp-text">-/-</span></div>
         <div id="enemy-hp-bar">
           <div id="enemy-hp-fill"></div>
         </div>
-        <div id="player-status">
-          <div>ライフ: <span id="player-life">10</span></div>
-          <div>タップ: <span id="tap-num">0</span> / 3</div>
+        <div id="player-hearts">
+          <img class="heart" src="img/heart_fill.png" alt="♥" />
+          <img class="heart" src="img/heart_fill.png" alt="♥" />
+          <img class="heart" src="img/heart_fill.png" alt="♥" />
+          <img class="heart" src="img/heart_fill.png" alt="♥" />
+          <img class="heart" src="img/heart_fill.png" alt="♥" />
         </div>
       </div>
 
-      <!-- 右：特殊効果・色凡例 -->
+      <!-- 右（7）：特殊効果・色凡例 -->
       <div id="info-right">
         <div id="special-abilities"></div>
         <div id="color-legend"></div>
@@ -33,7 +38,7 @@
 
     </div>
 
-    <!-- キャンバス（100vw 正方形・固定） -->
+    <!-- キャンバス（100vw 正方形） -->
     <div id="canvas-container">
       <canvas id="mainBoard"></canvas>
     </div>
