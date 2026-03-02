@@ -92,8 +92,8 @@ function init() {
 
   selectRandomEnemy();
 
-  canvas.addEventListener("click", handleTap);
-  canvas.addEventListener("touchstart", handleTap, { passive: false });
+  document.addEventListener("click", handleTap);
+  document.addEventListener("touchstart", handleTap, { passive: false });
 
   animate();
 

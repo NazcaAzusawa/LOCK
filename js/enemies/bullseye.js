@@ -10,8 +10,8 @@ export const bullseye = {
   hp: 10,
   patternX: 'chaos',
   patternY: 'chaos',
-  coeffX: 1.5,
-  coeffY: 2.8,
+  coeffX: 5,
+  coeffY: 6,
 
   // 色の説明
   colorLegend: [
